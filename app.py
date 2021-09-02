@@ -1,7 +1,11 @@
 from datetime import datetime
  
 from flask import Flask, render_template
- 
+from flask import request
+import json
+
+import win32ui
+
 app = Flask(__name__)
  
 posts = [
@@ -24,16 +28,31 @@ posts = [
 ]
  
 @app.route('/')
+
 @app.route('/index')
 def index():
     return render_template('index.html', posts=posts)
  
 @app.route('/about')
 def about():
-  return render_template('about.html', title='About')
+    o = win32ui.CreateFileDialog( 1, ".txt", "default.txt", 0, "Text Files (*.txt)|*.txt|All Files (*.*)|*.*|")
+    o.DoModal()
+    print (o.GetPathName())
+    
+    return render_template('about.html', title='About')
 
+@app.route('/api', methods=['POST']) 
+def api():
+    d = request.get_json()
+    to = d['to']
+
+    d = {"text": "Hello {}".format(to)}
+    return json.dumps(d)
+    
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port=5000, debug=False)
+
+
 
 
 #https://opentutorials.org/module/3669/22003
