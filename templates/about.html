@@ -1,24 +1,7 @@
-<!DOCTYPE HTML>
-<html lang="kr">
-  <head>
-    <meta charset="utf-8">
+{% extends 'layout.html' %}
  
-    <title>about</title>
-  </head>
- 
-  <body>
-    <header>
-      <nav>
-        <a href="/">about블로그</a>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-      </nav>
-      <hr>
-    </header>
- 
-    <main role="main">
-    <!-- Main content block -->
-    {% block content %}{% endblock %}
-    </main>
-  </body>
-</html>
+{% block content %}
+<div>
+  <h1>About</h1>
+</div>
+{% endblock %}
