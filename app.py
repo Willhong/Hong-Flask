@@ -50,10 +50,11 @@ def api():
     return json.dumps(d)
     
 if __name__ == "__main__":
-    app.run(host='127.0.0.1', port=5000, debug=False)
+    app.run(host='127.0.0.1', port=8080, debug=False)
 
 
 
 
 #https://opentutorials.org/module/3669/22003
 #https://wikidocs.net/143921
+#https://wikidocs.net/book/4542
