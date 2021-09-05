@@ -49,6 +49,7 @@ def download_yt(url):
 	ydl_opts = {
         'logger': MyLogger(),
         'progress_hooks': [my_hook],
+        'no_check_certificate': True,
     }
 	with youtube_dl.YoutubeDL(ydl_opts) as ydl:
 	 ydl.download([url])
