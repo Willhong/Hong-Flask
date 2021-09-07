@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE HTML>
 <html lang="kr">
   <head>
@@ -102,3 +103,35 @@
   </body>
 </html>
 
+=======
+<!DOCTYPE HTML>
+<html lang="kr">
+  <head>
+    <meta charset="utf-8">
+ 
+    {% if title %}
+      <title>Flask 블로그 - {{ title }}</title>
+    {% else %}
+      <title>Flask 블로그</title>
+    {% endif %}
+  </head>
+ 
+  <body>
+    <header>
+      <nav>
+        <a href="{{ url_for('index') }}">Flask 블로그</a>
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('about') }}">About</a>
+        <a href="{{ url_for('youtube') }}">Youtube</a>
+      </nav>
+      <hr>
+    </header>
+ 
+    <main role="main">
+    <!-- Main content block -->
+    {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>
+
+>>>>>>> eaef858c6c20bd6746731d84793d164565178970
