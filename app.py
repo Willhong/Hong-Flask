@@ -9,8 +9,10 @@ from youtube_dl.utils import args_to_str
 
 #import win32ui
 
+
 app = Flask(__name__)
- 
+
+numcount=0
 posts = [
     {
         'author': {
@@ -42,6 +44,7 @@ class MyLogger(object):
         print(msg)
 
 def my_hook(d):
+    global finish_log
     if d['status'] == 'finished':
         finish_log="Done downloading, now converting ..."
 
@@ -64,13 +67,13 @@ def index():
  
 @app.route('/about')
 def about():
-    """o = win32ui.CreateFileDialog( 1, ".txt", "default.txt", 0, "Text Files (*.txt)|*.txt|All Files (*.*)|*.*|")
-    o.DoModal()
-    print (o.GetPathName())
-    """
     
     return render_template('about.html', title='About')
-
+"""def s():
+    o = win32ui.CreateFileDialog( 1, ".jpg", "default.jpg", 0, "jpg Files (*.jpg)|*.jpg|All Files (*.*)|*.*|")
+    o.DoModal()
+    print (o.GetPathName())
+"""
 @app.route('/api', methods=['POST']) 
 def api():
     d = request.get_json()
@@ -87,11 +90,12 @@ def youtube():
         download_yt(value)
         return render_template('youtube.html',test=finish_log)
     elif request.method=='GET':
-        return render_template('youtube.html')
+        return render_template('youtube.html',test=finish_log)
 
 
 
 if __name__ == "__main__":
+    app.debug=True
     app.run(host='0.0.0.0', port=8080, debug=False)
 
 
@@ -100,3 +104,4 @@ if __name__ == "__main__":
 #https://opentutorials.org/module/3669/22003
 #https://wikidocs.net/143921
 #https://wikidocs.net/book/4542
+#https://essim92.tistory.com/8
