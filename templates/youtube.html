@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {% extends 'layout.html' %}
 
 {% block content %}
@@ -19,27 +18,3 @@
   </body>
 </div>
 {% endblock %}
-=======
-{% extends 'layout.html' %}
- 
-{% block content %}
-<div>
-
-  <h1>Youtube</h1>
-
-  <body>
-    <form action="/youtube" method="post">
-        <p>테스트 : <input type="text" name="test">
-        {%if test!=null %}
-        {{test}}
-        {%endif%}
-        </p>
-        <input type="submit" value="정보 넘기기">
-    </form>
-
-</body>
-</div>
-{% endblock %}
-
-
->>>>>>> eaef858c6c20bd6746731d84793d164565178970
