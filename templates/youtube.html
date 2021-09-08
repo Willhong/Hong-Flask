@@ -1,5 +1,5 @@
 {% extends 'layout.html' %}
- 
+
 {% block content %}
 <div>
 
@@ -7,16 +7,14 @@
 
   <body>
     <form action="/youtube" method="post">
-        <p>테스트 : <input type="text" name="test">
+      <p>테스트 : <input type="text" name="test">
         {%if test!=null %}
         {{test}}
         {%endif%}
-        </p>
-        <input type="submit" value="정보 넘기기">
+      </p>
+      <input class='btn btn-primary' type="submit" value="정보 넘기기">
     </form>
 
-</body>
+  </body>
 </div>
 {% endblock %}
-
-
