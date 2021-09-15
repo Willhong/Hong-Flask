@@ -83,7 +83,9 @@ def api():
     return json.dumps(d)
 @app.route('/youtube',methods=['POST','GET'])
 def youtube():
+    global finish_log
     if request.method == 'POST':
+        finish_log=""
         value = request.form['test']
         """ydl =threading.Thread(target=download_yt(value))
         ydl.start()"""
