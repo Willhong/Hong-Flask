@@ -1,10 +1,62 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<div>
-  <h1>About</h1>
 
+<!-- <a class='btn btn-primary' >about</button></a> -->
+
+<form action="methods">
+  <label for="StockInfo">주식검색하기</label>
+  <input type="text" id="StockInfo" class="whatToSearch" placeholder="검색" autocomplete="off" onkeyup="addStockList()">
+</form>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script>
+  $(document).ready(
+            $('.StockList').empty()
+        )
+    function addStockList() {
+         let StockKeyWord = $('#StockInfo').val()
+         $('.StockList').empty()
+         let BaseURL='https://investing.com'
+         if($('#StockInfo').val()!=""){
+        $.ajax({
+            type: 'GET',
+            url: 'https://api.investing.com/api/search/v2/search?q='+StockKeyWord,
+            success: function (response) {
+              if(response["quotes"].length!=0){
+                for(var i=0;i<response["quotes"].length;i++){
+                  var StockURL = response["quotes"][i]["url"]
+                  var StockName = response["quotes"][i]["description"]
+                  console.log(StockName,BaseURL+StockURL)
+                  getInvestingLink(StockName,BaseURL+StockURL)
+                  if(i>10){
+                    break
+                  }
+                  }
+              }
+            },
+            error: function (response) {
+                console.log(StockName, StockURL)
+            }
+        })
+      }
+    }
+    function getInvestingLink(title, Link) {
+        let LinkHTML = `
+            <li class="Link" onclick="location.href='${Link}'">${title} : ${Link}</li>
+        `
+        $('.StockList').append(LinkHTML)
+    }
+</script>
+<div class="StockList">
+  <!-- <ul class="StockList">
+      <li class="title">GEE</li>
+      <li class="link">소녀시대</li>
+  </ul> -->
 </div>
-<a class='btn btn-primary' href="{{ url_for('youtube') }}">Forward</button>
-  
+
+
+
+
 {% endblock %}

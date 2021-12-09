@@ -45,6 +45,10 @@ class MyLogger(object):
 
 def my_hook(d):
     global finish_log
+    try:
+        finish_log=d['_percent_str']+d['_eta_str']
+    except AttributeError:
+        print('AttributeError')
     if d['status'] == 'finished':
         finish_log="Done downloading, now converting ..."
 
@@ -67,8 +71,9 @@ def index():
  
 @app.route('/about')
 def about():
-    
     return render_template('about.html', title='About')
+
+    
 """def s():
     o = win32ui.CreateFileDialog( 1, ".jpg", "default.jpg", 0, "jpg Files (*.jpg)|*.jpg|All Files (*.*)|*.*|")
     o.DoModal()
@@ -89,16 +94,17 @@ def youtube():
         value = request.form['test']
         """ydl =threading.Thread(target=download_yt(value))
         ydl.start()"""
-        download_yt(value)
-        return render_template('youtube.html',test=finish_log)
+        a=threading.Thread(target=download_yt,args=(value,)) 
+        a.start()
+        return render_template('youtube.html',test=finish_log,title='Youtube')
     elif request.method=='GET':
-        return render_template('youtube.html',test=finish_log)
+        return render_template('youtube.html',test=finish_log,title='Youtube')
 
 
 
 if __name__ == "__main__":
     app.debug=True
-    app.run(host='0.0.0.0', port=8080, debug=False)
+    app.run(host='0.0.0.0', port=1234, debug=False)
 
 
 
