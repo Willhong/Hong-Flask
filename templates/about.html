@@ -44,7 +44,7 @@
     }
     function getInvestingLink(title, Link) {
         let LinkHTML = `
-            <li class="Link" onclick="location.href='${Link}'">${title} : ${Link}</li>
+            <li class="list-group-item">${title} : <a href='${Link}'>${Link}</li>
         `
         $('.StockList').append(LinkHTML)
     }
